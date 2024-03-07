@@ -22,7 +22,7 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
-	fmt.Printf("Authorized on account %s", bot.Self.UserName)
+	log.Printf("Sharifova Shikebo %s", bot.Self.UserName)
 
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
@@ -83,15 +83,15 @@ func HandleMessage(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	case "Ошибочное пополнение":
 		userState.PreviousMenu = userState.CurrentMenu
 		userState.CurrentMenu = "Ошибочное пополнение"
-		msg.ReplyMarkup = Keyboards.Term
+		msg.ReplyMarkup = Keyboards.Payment
 	case "Правильный номер":
 		userState.PreviousMenu = userState.CurrentMenu
 		userState.CurrentMenu = "Правильный номер"
-		msg.ReplyMarkup = Keyboards.Terms
+		msg.ReplyMarkup = Keyboards.CorrectNumber
 	case "Номер терминала":
 		userState.PreviousMenu = userState.CurrentMenu
 		userState.CurrentMenu = "Номер терминала"
-		msg.ReplyMarkup = Keyboards.Term3
+		msg.ReplyMarkup = Keyboards.TerminalNum
 	case "Карты":
 		userState.PreviousMenu = userState.CurrentMenu
 		userState.CurrentMenu = "Карты"
@@ -119,7 +119,7 @@ func HandleMessage(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	case "Пройти идентификацию":
 		userState.PreviousMenu = userState.CurrentMenu
 		userState.CurrentMenu = "Пройти идентификацию"
-		msg.ReplyMarkup = Keyboards.Goid
+		msg.ReplyMarkup = Keyboards.PassIden
 	case "Переводы":
 		userState.PreviousMenu = userState.CurrentMenu
 		userState.CurrentMenu = "Переводы"
@@ -142,7 +142,7 @@ func HandleMessage(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 			msg.ReplyMarkup = Keyboards.StartMenu
 		}
 	default:
-		fmt.Println("from: ", update.Message.From.ID, " Contact: ", update.Message.Contact.UserID)
+		log.Println("from: ", update.Message.From.ID, " Contact: ", update.Message.Contact.UserID)
 
 		user_id := update.Message.From.ID
 		contact_id := update.Message.Contact.UserID
